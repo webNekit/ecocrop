@@ -38,6 +38,17 @@
                     </svg>
                 </span>
             </button>
+            {{-- авторизация/регистрация --}}
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/dashboard') }}">Личный кабинет</a>
+                @else 
+                    <a href="{{ route('login') }}">Войти</a>
+                    @if(Route::has('register'))
+                        <a href="{{ route('register') }}">Зарегистрироваться</a>
+                    @endif
+                @endauth
+            @endif
         </div>
     </x-container>
 </header>
