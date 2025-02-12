@@ -16,7 +16,7 @@ Route::get('/dashboard', function () {
 // Суперпользователь role === 2
 Route::get('/dashboard-superuser', function () {
     return view('dashboard-superuser');
-})->middleware(['auth', 'verified'])->name('dashboard-superuser');
+})->middleware(['auth', 'verified', 'superUser'])->name('dashboard-superuser');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
