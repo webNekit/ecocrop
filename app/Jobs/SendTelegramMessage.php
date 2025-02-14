@@ -28,15 +28,13 @@ class SendTelegramMessage implements ShouldQueue
      */
     public function handle(): void
     {
-        // https://api.telegram.org/bot
-        // Получаем переменные из файла .env
         $botToken = env('TELEGRAM_BOT_TOKEN');
         $chatId = env('TELEGRAM_CHAT_ID');
 
         $text = "Новая заявка от: {$this->name}\n\n{$this->email}";
 
-        Http::post("https://api.telegram.org/bot/{$botToken}/sendMessage", [
-            'chat_id' => $chatId,
+        Http::post("https://api.telegram.org/bot8173674080:AAH_P405cIOBABeijgyvx5ORv-gpAhL_f9c/sendMessage", [
+            'chat_id' => -1002330336648,
             'text' => $text
         ]);
     }
