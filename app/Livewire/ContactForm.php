@@ -27,7 +27,7 @@ class ContactForm extends Component
     {
         $this->validate();
 
-        SendTelegramMessage::dispatch($this->name, $this->email);
+        dispatch(new SendTelegramMessage($this->name, $this->email))->handle();
 
         $this->reset(['name', 'email']);
         session()->flash('message', 'Заявка успешно отправлена');

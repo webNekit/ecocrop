@@ -13,14 +13,15 @@ class SendTelegramMessage implements ShouldQueue
 
     protected $name;
     protected $email;
+    protected $botToken;
+    protected $chatId;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct($name, $email)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->botToken = env('TELEGRAM_BOT_TOKEN');
+        $this->chatId = env('TELEGRAM_CHAT_ID');
     }
 
     /**
@@ -28,14 +29,13 @@ class SendTelegramMessage implements ShouldQueue
      */
     public function handle(): void
     {
-        $botToken = env('TELEGRAM_BOT_TOKEN');
-        $chatId = env('TELEGRAM_CHAT_ID');
 
-        $text = "Новая заявка от: {$this->name}\n\n{$this->email}";
+        $text = "Новое сообщение от: {$this->name}\n\n{$this->email}";
 
-        Http::post("https://api.telegram.org/bot8173674080:AAH_P405cIOBABeijgyvx5ORv-gpAhL_f9c/sendMessage", [
-            'chat_id' => -1002330336648,
-            'text' => $text
+        // Отправка сообщения в Telegram
+        Http::post("https://api.telegram.org/bot{$this->botToken}/sendMessage", [
+            'chat_id' => $this->chatId,
+            'text' => $text,
         ]);
     }
 }
