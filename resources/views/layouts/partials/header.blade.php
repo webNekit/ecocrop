@@ -1,3 +1,9 @@
+@php
+    use App\Models\Setting;
+
+    $siteName = Setting::latest()->first()->name;
+@endphp
+
 <header aria-label="Шапка сайта" class="mt-[40px] absolute top-0 right-0 left-0" id="header">
     <x-container>
         <div class="flex items-center justify-between max-w-full px-3 py-6 rounded-full bg-white/10 backdrop-blur-sm">
@@ -6,6 +12,7 @@
                 <a aria-label="На главную" href="{{ route('page.home') }}" class="">
                     <img width="95" height="25" src="{{ asset('images/logo.svg') }}"
                         alt="Логотип сайта {{ config('app.name') }}" class="">
+                    {{ $siteName ?? env('APP_NAME') }}
                 </a>
             </div>
             {{-- end logo --}}
@@ -42,9 +49,9 @@
             @if (Route::has('login'))
                 @auth
                     <a href="{{ url('/dashboard') }}">Личный кабинет</a>
-                @else 
+                @else
                     <a href="{{ route('login') }}">Войти</a>
-                    @if(Route::has('register'))
+                    @if (Route::has('register'))
                         <a href="{{ route('register') }}">Зарегистрироваться</a>
                     @endif
                 @endauth

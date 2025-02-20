@@ -1,5 +1,6 @@
 <x-base-layout>
     <x-slot:meta>
+        <title>{{ $title ?? 'Название страницы' }} - {{ $site_name ?? config('app.name') }}</title>
         <meta name="title" content="{{ $meta_title ?? 'Meta-заголовок сайта' }}">
         <meta name="description" content="{{ $meta_description ?? 'Meta-описание сайта' }}">
         <meta name="keywords" content="{{ $meta_keywords ?? 'Meta-ключевые слова' }}">
