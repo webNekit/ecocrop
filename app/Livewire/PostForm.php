@@ -11,7 +11,7 @@ class PostForm extends Component
     public $title;
     public $description;
     public $content;
-    public $is_active;
+    public $is_active = false;
     public $is_verificate = false;
     public $user_id = '';
 
